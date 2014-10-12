@@ -1,0 +1,27 @@
+# Welcome the user to the game
+  puts "Wecome to Tic-tac-toe!"
+#Initialize board positions, so each square has a number
+  def initialize_board
+  b = {}
+  (1..9).each {|position| b[position] = ' '}
+  return b
+  end
+# Draw board with positions numbered
+
+  def draw_board(b)
+    puts "  #{b[1]}  |  #{b[2]}  |#{b[3]}  "
+    puts "__________________"
+    puts "  #{b[4]}  |  #{b[5]}  |#{b[6]}  "
+    puts "__________________"
+    puts "  #{b[7]}  |  #{b[8]}  |#{b[9]}  "
+  end
+
+board = initialize_board
+draw_board(board)
+
+
+# Assign user to a x or o
+# Assign computer an x or o
+# Ask user to choose a square
+# Have computer choose a square that is not taken
+# Start back to asking user then computer until 3 in a row, or stale mate
