@@ -9,6 +9,7 @@
 # Draw board with positions numbered
 
   def draw_board(b)
+    system 'clear'
     puts "  #{b[1]}  |  #{b[2]}  |#{b[3]}  "
     puts "__________________"
     puts "  #{b[4]}  |  #{b[5]}  |#{b[6]}  "
@@ -16,12 +17,39 @@
     puts "  #{b[7]}  |  #{b[8]}  |#{b[9]}  "
   end
 
+# Make sure any choice is an empty square
+
+def empty_positions(b)
+  b.select {|k, v| v == ' ' }.keys
+end
+
+# Player picks a square position, marked with an X
+
+def player_picks_square(b)
+  puts "Pick a square position (1-9)."
+  position = gets.chomp.to_i
+  b[position] = "X"
+end
+
+# Computer picks a square position, marked with an O
+
+def computer_picks_square(b)
+  position = empty_positions(b).sample
+  b[position] = 'O'
+end
+
 board = initialize_board
 draw_board(board)
+# Play game
+begin
+  player_picks_square(board)
+  computer_picks_square(board)
+  draw_board(board)
+end until empty_positions(board).empty?
 
 
-# Assign user to a x or o
-# Assign computer an x or o
-# Ask user to choose a square
-# Have computer choose a square that is not taken
+
 # Start back to asking user then computer until 3 in a row, or stale mate
+
+
+
