@@ -38,18 +38,37 @@ def computer_picks_square(b)
   b[position] = 'O'
 end
 
+def check_winner(b)
+  winning_lines = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]]
+  winning_lines.each do |line|
+    if b[line[0]] == 'X' and b[line[1]] == 'X' and b[line[2]] == 'X'
+      return 'Player'
+    elsif b[line[0]] == 'O' and b[line[1]] == 'O' and b[line[2]] == 'O'
+      return 'Computer'
+    else
+      return nil
+    end
+  end
+end
+
 board = initialize_board
 draw_board(board)
+
 # Play game
 begin
   player_picks_square(board)
   computer_picks_square(board)
   draw_board(board)
-end until empty_positions(board).empty?
+  winner = check_winner(board)
+end until winner || empty_positions(board).empty?
+
+if winner
+  puts "#{winner} won!"
+else
+  puts "It's a tie!"
+end
 
 
-
-# Start back to asking user then computer until 3 in a row, or stale mate
 
 
 
